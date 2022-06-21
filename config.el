@@ -125,7 +125,7 @@
 
 ;; Projectile
 (setq projectile-project-search-path '("~/src" "~/org"))
-(setq projectile-globally-ignored-directories '("node_modules"))
+(setq projectile-globally-ignored-directories '("node_modules") '("vendor"))
 
 ;; Word-wrap
 (global-visual-line-mode t)
