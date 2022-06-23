@@ -124,8 +124,14 @@
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 
 ;; Projectile
-(setq projectile-project-search-path '("~/src" "~/org"))
-(setq projectile-globally-ignored-directories '("node_modules") '("vendor"))
+(after! projectile
+  (add-to-list projectile-project-search-path '("~/src" "~/org"))
+  (add-to-list projectile-globally-ignored-directories '("node_modules" "*vendor")))
+
+(eval-after-load "grep"
+  '(progn
+    (add-to-list 'grep-find-ignored-directories "vendor")))
+
 
 ;; Word-wrap
 (global-visual-line-mode t)
@@ -138,3 +144,6 @@
       doom-unicode-font (font-spec :size 18)
       doom-big-font (font-spec :size 25)
 )
+
+;; Download Emoji without asking
+(setq emojify-download-emojis-p t)
