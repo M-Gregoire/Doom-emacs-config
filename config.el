@@ -125,15 +125,15 @@
 
 ;; Projectile
 (after! projectile
-  (add-to-list projectile-project-search-path '("~/src" "~/org"))
-  (add-to-list projectile-globally-ignored-directories '("*vendor")))
+  (add-to-list 'projectile-project-search-path '("~/src" "~/org"))
+  (add-to-list 'projectile-globally-ignored-directories '("*vendor")))
 
 (eval-after-load "grep"
   '(progn
     (add-to-list 'grep-find-ignored-directories "vendor")))
 
 (after! js2-mode
-  (add-to-list projectile-globally-ignored-directories '("node_modules")))
+  (add-to-list 'projectile-globally-ignored-directories '("node_modules")))
 
 ;; Word-wrap
 (global-visual-line-mode t)
