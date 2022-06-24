@@ -1,8 +1,30 @@
-;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+First, we set the default headers which will be inherited by all entries
+Note: If modified, it need to be update with org-ctrl-c-ctrl-c
+See https://emacs.stackexchange.com/a/13235
 
+:DOC-CONFIG:
+# Tangle by default to config.el, which is the most common case
+#+property: header-args:emacs-lisp :tangle config.el
+#+property: header-args :mkdirp yes :comments no :results silent
+#+startup: fold
+:END:
+
+#+title: Doom Emacs configuration
+#+author: Grégoire Martinache
+
+We enabled lexical binding (See https://www.emacswiki.org/emacs/DynamicBindingVsLexicalBinding)
+#+begin_src emacs-lisp
+;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+#+end_src
+
+Let's define the user
+#+begin_src emacs-lisp
 ;;(setq user-full-name "John Doe"
 ;;      user-mail-address "john@doe.com")
+#+end_src
 
+
+#+begin_src emacs-lisp
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -142,3 +164,4 @@
 (add-hook 'org-mode-hook
           (lambda () (add-hook 'after-save-hook #'org-babel-tangle
                           :append :local)))
+#+end_src
