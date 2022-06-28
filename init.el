@@ -6,7 +6,8 @@
        company           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ivy               ; a search engine for love and life
+       ;;ivy               ; a search engine for love and life
+       vertico            ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -77,7 +78,6 @@
        ;;gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
        lsp
-       ;;macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
        pass              ; password manager for nerds
@@ -88,6 +88,9 @@
        terraform         ; infrastructure as code
        tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
+
+       :os
+       (:if IS-MAC macos)
 
        :lang
        ;;agda              ; types of types of types of types...

@@ -118,11 +118,14 @@
 
 ;; Projectile
 (after! projectile
-  (add-to-list 'projectile-project-search-path '"~/src" '"~/org")
-  (add-to-list 'projectile-globally-ignored-directories '"vendor"))
+  (add-to-list 'projectile-project-search-path "~/src" "~/org")
+  (add-to-list 'projectile-globally-ignored-directories "vendor"))
 
 (after! js2-mode
-  (add-to-list 'projectile-globally-ignored-directories '"node_modules"))
+  (add-to-list 'projectile-globally-ignored-directories "node_modules"))
+
+(after! vertico
+  (add-to-list 'completion-ignored-extensions "vendor"))
 
 ;; Word-wrap
 (global-visual-line-mode t)
@@ -142,3 +145,10 @@
 (add-hook 'org-mode-hook
           (lambda () (add-hook 'after-save-hook #'org-babel-tangle
                           :append :local)))
+
+(cond (IS-MAC
+      (setq mac-command-modifier 'control
+            mac-control-modifier 'super
+            mac-option-modifier 'meta
+            mac-right-option-modifier nil
+            mac-pass-control-to-system nil)))
