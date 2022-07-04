@@ -151,4 +151,5 @@
             mac-control-modifier 'super
             mac-option-modifier 'meta
             mac-right-option-modifier nil
-            mac-pass-control-to-system nil)))
+            mac-pass-control-to-system nil
+	    confirm-kill-emacs nil)))
