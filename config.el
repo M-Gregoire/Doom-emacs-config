@@ -94,8 +94,8 @@
 ;; Org mode
 ; Add timestamp to done item
 (after! org
-  (setq org-directory "~/Documents/org/")
-  (setq org-agenda-files '("~/Documents/org/agenda.org"))
+  (setq org-directory "~/org/")
+  (setq org-agenda-files '("~/org/perso"))
   (setq org-log-done 'time)
 ; Prevent long line in src block
 (setq org-latex-minted-options '(("breaklines" "true")
@@ -123,7 +123,6 @@
 
 (after! js2-mode
   (add-to-list 'projectile-globally-ignored-directories "node_modules"))
-
 (after! vertico
   (add-to-list 'completion-ignored-extensions "vendor"))
 
