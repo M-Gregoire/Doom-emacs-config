@@ -97,12 +97,18 @@
   (setq org-directory "~/org/")
   (setq org-agenda-files '("~/org/perso"))
   (setq org-log-done 'time)
-; Prevent long line in src block
-(setq org-latex-minted-options '(("breaklines" "true")
+
+
+  (setq org-highest-priority ?A)
+  (setq org-lowest-priority ?E)
+  (setq org-default-priority ?C)
+
+  ; Prevent long line in src block
+  (setq org-latex-minted-options '(("breaklines" "true")
                                  ("breakanywhere" "true")))
 
-;; Syntax coloring in latex export
-(setq org-latex-listings 'minted
+  ;; Syntax coloring in latex export
+  (setq org-latex-listings 'minted
       org-latex-packages-alist '(("" "minted"))
       org-latex-pdf-process
       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
@@ -110,6 +116,17 @@
         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 )
+
+(after! org-fancy-priorities
+(setq org-fancy-priorities-list '("[ Urgent ]" "[ Important ]" "[ Normal ]" "[ Bas ]" "[ Non prioritaire ]")))
+  ;; (setq org-fancy-priorities-list '((?A . "[❗ Urgent ]")
+  ;;                                 (?B . "[⬆ Importan t]")
+  ;;                                 (?C . "[ Normal ]")
+  ;;                                 (?D . "[⬇ Bas ]")
+  ;;                                 (?E . "[ ☕ Non prioritaire ]")))
+
+                )
+
 
 ;; Key chords
 (require 'key-chord)
