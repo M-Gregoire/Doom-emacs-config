@@ -147,7 +147,7 @@ Let's define the user
   ;;                                 (?D . "[⬇ Bas ]")
   ;;                                 (?E . "[ ☕ Non prioritaire ]")))
 
-                )
+
 
 
 ;; Key chords

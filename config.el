@@ -125,7 +125,6 @@
   ;;                                 (?D . "[⬇ Bas ]")
   ;;                                 (?E . "[ ☕ Non prioritaire ]")))
 
-                )
 
 
 ;; Key chords
