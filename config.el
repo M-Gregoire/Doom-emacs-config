@@ -127,6 +127,7 @@
 
 
 
+
 ;; Key chords
 (require 'key-chord)
 (key-chord-mode t)
@@ -168,3 +169,13 @@
             mac-right-option-modifier nil
             mac-pass-control-to-system nil
 	    confirm-kill-emacs nil)))
+
+
+;; Archiving a subtree in org-mode
+(defun org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries
+   (lambda ()
+     (org-archive-subtree)
+     (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+   "/DONE" 'tree))
