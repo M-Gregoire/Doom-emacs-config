@@ -149,10 +149,10 @@
 (setq-default evil-cross-lines t)
 
 ;; Fonts
-(setq doom-font (font-spec :size 18)
+(setq doom-font (font-spec :size 26)
       ;doom-variable-pitch-font (font-spec :family "Fira Sans") ; inherits `doom-font''s :size
-      doom-unicode-font (font-spec :size 18)
-      doom-big-font (font-spec :size 25)
+      doom-unicode-font (font-spec :size 26)
+      doom-big-font (font-spec :size 30)
 )
 
 ;; Download Emoji without asking
