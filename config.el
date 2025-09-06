@@ -48,6 +48,11 @@
 ;; Easier window movement
 ;;(windmove-defaut-keybindings)
 
+
+
+(setq evil-want-minibuffer t)
+
+
 (defhydra hydra-zoom (global-map "<f2>")
   "zoom"
   ("g" text-scale-increase "in")
@@ -148,12 +153,38 @@
 ; Make horizontal movement cross lines
 (setq-default evil-cross-lines t)
 
-;; Fonts
-(setq doom-font (font-spec :size 26)
-      ;doom-variable-pitch-font (font-spec :family "Fira Sans") ; inherits `doom-font''s :size
-      doom-unicode-font (font-spec :size 26)
-      doom-big-font (font-spec :size 30)
-)
+;; Optional: set your default family once
+(setq doom-font (font-spec :family "Fira Code" :size 14))
+
+;; Host → size (pt). Edit names/sizes here.
+(defconst my/font-sizes
+  '(("vali" . 14)
+    ("mimir" . 18))
+  "Alist mapping hostnames to font sizes.")
+
+(defun my/doom-font-family ()
+  "Return the current Doom font family as a string."
+  (cond
+   ((stringp doom-font) doom-font)
+   ((fontp doom-font) (or (font-get doom-font :family)
+                          ;; fallback to the default face if family missing
+                          (face-attribute 'default :family)))
+   (t (face-attribute 'default :family))))
+
+(defun my/apply-doom-font-size (size)
+  "Apply SIZE to Doom's main font, preserving family."
+  (setq doom-font (font-spec :family (my/doom-font-family) :size size))
+  (when (fboundp 'doom/reload-font) (doom/reload-font)))
+
+;; Apply per-host size (fallback 16)
+(my/apply-doom-font-size
+ (or (alist-get (system-name) my/font-sizes nil nil #'string-equal) 16))
+
+;; Tiny interactive: change size without touching family
+(defun my/set-font-size (size)
+  "Set Doom font SIZE (pt) for the current session."
+  (interactive "nFont size: ")
+  (my/apply-doom-font-size size))
 
 ;; Download Emoji without asking
 (setq emojify-download-emojis-p t)
@@ -179,3 +210,23 @@
      (org-archive-subtree)
      (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
    "/DONE" 'tree))
+
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
+(use-package! gptel)
+
+(setq org-roam-directory (file-truename "~/roam/"))
+
+(use-package! org-roam-ui
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start nil))
