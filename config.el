@@ -48,53 +48,7 @@
 ;; Easier window movement
 ;;(windmove-defaut-keybindings)
 
-
-
 (setq evil-want-minibuffer t)
-
-
-(defhydra hydra-zoom (global-map "<f2>")
-  "zoom"
-  ("g" text-scale-increase "in")
-  ("l" text-scale-decrease "out"))
-
-(defhydra hydra-splitter (global-map "C-M-s")
-  "splitter"
-  ("h" hydra-move-splitter-left)
-  ("j" hydra-move-splitter-down)
-  ("k" hydra-move-splitter-up)
-  ("l" hydra-move-splitter-right))
-
-(defhydra hydra-windows ()
-  "C-arrow = switch, S-arrow = size, M-arrow = move"
-  ("C-<left>" windmove-left nil)
-  ("C-<right>" windmove-right nil)
-  ("C-<up>" windmove-up nil)
-  ("C-<down>" windmove-down nil)
-  ("S-<left>" hydra-move-splitter-left nil)
-  ("S-<right>" hydra-move-splitter-right  nil)
-  ("S-<up>" hydra-move-splitter-up nil)
-  ("S-<down>" hydra-move-splitter-down nil)
-  ("M-<left>" buf-move-left nil)
-  ("M-<right>" buf-move-right nil)
-  ("M-<up>" buf-move-up nil)
-  ("M-<down>" buf-move-down nil)
-  ("p" previous-buffer "prev-buf")
-  ("n" next-buffer "next-buf")
-  ("1" delete-other-windows "1")
-  ("d" delete-window "del")
-  ("k" kill-buffer "kill")
-  ("s" save-buffer "save")
-  ("u" (progn (winner-undo) (setq this-command 'winner-undo)) "undo")
-  ("r" winner-redo "redo")
-  ("b" helm-mini "helm-mini" :exit t)
-  ("f" helm-find-files "helm-find" :exit t)
-  ("|" (lambda () (interactive) (split-window-right) (windmove-right)))
-  ("_" (lambda () (interactive) (split-window-below) (windmove-down)))
-  ("q" nil "cancel")
-  )
-
-(global-set-key (kbd "M-#") 'hydra-windows/body)
 
 ;; Org mode
 ; Add timestamp to done item
